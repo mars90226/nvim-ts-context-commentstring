@@ -99,6 +99,10 @@ function M.get_node_at_cursor_start_of_line(only_languages, not_nested_languages
 
   -- default to top level language tree
   local language_tree = vim.treesitter.get_parser()
+  if language_tree == nil then
+    return
+  end
+
   -- Get the smallest supported language's tree with nodes inside the given range
   language_tree:for_each_tree(function(_, ltree)
     if
